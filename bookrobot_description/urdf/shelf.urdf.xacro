@@ -1,0 +1,231 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!--
+    Custom Bookshelf for Bookrobot
+    - No columns, has walls on sides and back
+    - Front is open for book insertion
+    - Each level height: 30cm
+    - Flat rooftop
+    -->
+
+    <xacro:macro name="insert_shelf" params="parent prefix num_levels:=3">
+
+        <!-- Shelf properties -->
+        <xacro:property name="shelf_width" value="0.35"/>           <!-- Width (x-axis) -->
+        <xacro:property name="shelf_depth" value="0.35"/>           <!-- Depth (y-axis) - same as width -->
+        <xacro:property name="shelf_thickness" value="0.01"/>       <!-- Plate thickness -->
+        <xacro:property name="shelf_level_height" value="0.30"/>    <!-- Height between levels: 30cm -->
+        <xacro:property name="wall_thickness" value="0.01"/>        <!-- Wall thickness -->
+        <xacro:property name="total_height" value="${shelf_level_height * num_levels}"/>
+
+        <!-- Base plate -->
+        <link name="${prefix}shelf_base">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <box size="${shelf_width} ${shelf_depth} ${shelf_thickness}"/>
+                </geometry>
+                <material name="shelf_material">
+                    <color rgba="0.4 0.3 0.2 1.0"/>  <!-- Brown wood-like color -->
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <box size="${shelf_width} ${shelf_depth} ${shelf_thickness}"/>
+                </geometry>
+            </collision>
+            <inertial>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <mass value="2.0"/>
+                <inertia ixx="0.01" ixy="0.0" ixz="0.0"
+                         iyy="0.01" iyz="0.0" izz="0.01"/>
+            </inertial>
+        </link>
+
+        <!-- Fixed joint to attach shelf to robot -->
+        <joint name="${prefix}shelf_base_joint" type="fixed">
+            <parent link="${parent}"/>
+            <child link="${prefix}shelf_base"/>
+            <!-- Position shelf above the robot base, rotated 90 degrees clockwise (from top view) -->
+            <origin xyz="0.0 0.0 0.25" rpy="0 0 ${-pi/2}"/>
+        </joint>
+
+        <!-- Left side wall -->
+        <link name="${prefix}shelf_wall_left">
+            <visual>
+                <origin xyz="0 0 ${total_height/2}" rpy="0 0 0"/>
+                <geometry>
+                    <box size="${wall_thickness} ${shelf_depth} ${total_height}"/>
+                </geometry>
+                <material name="wall_material">
+                    <color rgba="0.35 0.25 0.15 1.0"/>  <!-- Darker brown -->
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 0 ${total_height/2}" rpy="0 0 0"/>
+                <geometry>
+                    <box size="${wall_thickness} ${shelf_depth} ${total_height}"/>
+                </geometry>
+            </collision>
+            <inertial>
+                <origin xyz="0 0 ${total_height/2}" rpy="0 0 0"/>
+                <mass value="1.0"/>
+                <inertia ixx="0.01" ixy="0.0" ixz="0.0"
+                         iyy="0.01" iyz="0.0" izz="0.001"/>
+            </inertial>
+        </link>
+        <joint name="${prefix}shelf_wall_left_joint" type="fixed">
+            <parent link="${prefix}shelf_base"/>
+            <child link="${prefix}shelf_wall_left"/>
+            <origin xyz="${-shelf_width/2 + wall_thickness/2} 0 ${shelf_thickness/2}" rpy="0 0 0"/>
+        </joint>
+
+        <!-- Right side wall -->
+        <link name="${prefix}shelf_wall_right">
+            <visual>
+                <origin xyz="0 0 ${total_height/2}" rpy="0 0 0"/>
+                <geometry>
+                    <box size="${wall_thickness} ${shelf_depth} ${total_height}"/>
+                </geometry>
+                <material name="wall_material">
+                    <color rgba="0.35 0.25 0.15 1.0"/>
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 0 ${total_height/2}" rpy="0 0 0"/>
+                <geometry>
+                    <box size="${wall_thickness} ${shelf_depth} ${total_height}"/>
+                </geometry>
+            </collision>
+            <inertial>
+                <origin xyz="0 0 ${total_height/2}" rpy="0 0 0"/>
+                <mass value="1.0"/>
+                <inertia ixx="0.01" ixy="0.0" ixz="0.0"
+                         iyy="0.01" iyz="0.0" izz="0.001"/>
+            </inertial>
+        </link>
+        <joint name="${prefix}shelf_wall_right_joint" type="fixed">
+            <parent link="${prefix}shelf_base"/>
+            <child link="${prefix}shelf_wall_right"/>
+            <origin xyz="${shelf_width/2 - wall_thickness/2} 0 ${shelf_thickness/2}" rpy="0 0 0"/>
+        </joint>
+
+        <!-- Back wall -->
+        <link name="${prefix}shelf_wall_back">
+            <visual>
+                <origin xyz="0 0 ${total_height/2}" rpy="0 0 0"/>
+                <geometry>
+                    <box size="${shelf_width - 2*wall_thickness} ${wall_thickness} ${total_height}"/>
+                </geometry>
+                <material name="wall_material">
+                    <color rgba="0.35 0.25 0.15 1.0"/>
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 0 ${total_height/2}" rpy="0 0 0"/>
+                <geometry>
+                    <box size="${shelf_width - 2*wall_thickness} ${wall_thickness} ${total_height}"/>
+                </geometry>
+            </collision>
+            <inertial>
+                <origin xyz="0 0 ${total_height/2}" rpy="0 0 0"/>
+                <mass value="1.0"/>
+                <inertia ixx="0.01" ixy="0.0" ixz="0.0"
+                         iyy="0.01" iyz="0.0" izz="0.001"/>
+            </inertial>
+        </link>
+        <joint name="${prefix}shelf_wall_back_joint" type="fixed">
+            <parent link="${prefix}shelf_base"/>
+            <child link="${prefix}shelf_wall_back"/>
+            <origin xyz="0 ${-shelf_depth/2 + wall_thickness/2} ${shelf_thickness/2}" rpy="0 0 0"/>
+        </joint>
+
+        <!-- Shelf levels (1 to num_levels-1, since base is level 0) -->
+        <!-- Each level is 30cm above the previous one -->
+        <xacro:macro name="shelf_level" params="level_num">
+            <link name="${prefix}shelf_level_${level_num}">
+                <visual>
+                    <origin xyz="0 0 0" rpy="0 0 0"/>
+                    <geometry>
+                        <box size="${shelf_width - 2*wall_thickness} ${shelf_depth - wall_thickness} ${shelf_thickness}"/>
+                    </geometry>
+                    <material name="shelf_material">
+                        <color rgba="0.4 0.3 0.2 1.0"/>
+                    </material>
+                </visual>
+                <collision>
+                    <origin xyz="0 0 0" rpy="0 0 0"/>
+                    <geometry>
+                        <box size="${shelf_width - 2*wall_thickness} ${shelf_depth - wall_thickness} ${shelf_thickness}"/>
+                    </geometry>
+                </collision>
+                <inertial>
+                    <origin xyz="0 0 0" rpy="0 0 0"/>
+                    <mass value="1.5"/>
+                    <inertia ixx="0.008" ixy="0.0" ixz="0.0"
+                             iyy="0.008" iyz="0.0" izz="0.008"/>
+                </inertial>
+            </link>
+            <joint name="${prefix}shelf_level_${level_num}_joint" type="fixed">
+                <parent link="${prefix}shelf_base"/>
+                <child link="${prefix}shelf_level_${level_num}"/>
+                <origin xyz="0 ${wall_thickness/2} ${shelf_level_height * level_num}" rpy="0 0 0"/>
+            </joint>
+        </xacro:macro>
+
+        <!-- Rooftop (flat top plate) -->
+        <link name="${prefix}shelf_roof">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <box size="${shelf_width} ${shelf_depth} ${shelf_thickness}"/>
+                </geometry>
+                <material name="shelf_material">
+                    <color rgba="0.4 0.3 0.2 1.0"/>
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <box size="${shelf_width} ${shelf_depth} ${shelf_thickness}"/>
+                </geometry>
+            </collision>
+            <inertial>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <mass value="2.0"/>
+                <inertia ixx="0.01" ixy="0.0" ixz="0.0"
+                         iyy="0.01" iyz="0.0" izz="0.01"/>
+            </inertial>
+        </link>
+        <joint name="${prefix}shelf_roof_joint" type="fixed">
+            <parent link="${prefix}shelf_base"/>
+            <child link="${prefix}shelf_roof"/>
+            <origin xyz="0 0 ${total_height}" rpy="0 0 0"/>
+        </joint>
+
+        <!-- Generate shelf levels based on num_levels parameter -->
+        <!-- Level 1 -->
+        <xacro:if value="${num_levels >= 2}">
+            <xacro:shelf_level level_num="1"/>
+        </xacro:if>
+
+        <!-- Level 2 -->
+        <xacro:if value="${num_levels >= 3}">
+            <xacro:shelf_level level_num="2"/>
+        </xacro:if>
+
+        <!-- Level 3 -->
+        <xacro:if value="${num_levels >= 4}">
+            <xacro:shelf_level level_num="3"/>
+        </xacro:if>
+
+        <!-- Level 4 (if needed) -->
+        <xacro:if value="${num_levels >= 5}">
+            <xacro:shelf_level level_num="4"/>
+        </xacro:if>
+
+    </xacro:macro>
+
+</robot>
