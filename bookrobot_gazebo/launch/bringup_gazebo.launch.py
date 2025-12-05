@@ -20,7 +20,12 @@ def generate_launch_description():
     resource_path = resource_path[:len(resource_path) - len('bookrobot_description')]
 
     model_path = get_package_share_directory('bookrobot_gazebo')
-    environ['IGN_GAZEBO_RESOURCE_PATH'] = resource_path + pathsep + model_path + "/models"
+
+    # Add map/models directory to resource path for TurtleBot3 and other models
+    workspace_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(model_path))))
+    map_models_path = os.path.join(workspace_root, 'src', 'bookrobot', 'map', 'models')
+
+    environ['IGN_GAZEBO_RESOURCE_PATH'] = resource_path + pathsep + model_path + "/models" + pathsep + map_models_path
 
     gz_sim = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([
