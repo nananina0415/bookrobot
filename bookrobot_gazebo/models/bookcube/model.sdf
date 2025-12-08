@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <model name="bookcube">
+    <static>false</static>
+
+    <link name="base_link">
+      <pose>0 0 0 0 0 0</pose>
+
+      <inertial>
+        <mass>3.0</mass>
+        <inertia>
+          <ixx>0.025</ixx>
+          <iyy>0.025</iyy>
+          <izz>0.025</izz>
+        </inertia>
+      </inertial>
+
+      <!-- STL Mesh Visual -->
+      <visual name="bookcube_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://bookcube/bookcube.stl</uri>
+            <scale>1 1 1</scale>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.6 0.4 0.2 1.0</ambient>
+          <diffuse>0.6 0.4 0.2 1.0</diffuse>
+          <specular>0.1 0.1 0.1 1.0</specular>
+        </material>
+      </visual>
+
+      <!-- STL Mesh Collision -->
+      <collision name="bookcube_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://bookcube/bookcube.stl</uri>
+            <scale>1 1 1</scale>
+          </mesh>
+        </geometry>
+      </collision>
+
+    </link>
+
+  </model>
+</sdf>
