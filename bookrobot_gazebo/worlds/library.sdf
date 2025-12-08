@@ -54,6 +54,274 @@
       </link>
     </model>
 
+    <!-- Outer walls (45m x 45m, 중심이 원점) -->
+    <!-- South wall (y = -22.5) -->
+    <model name="wall_south">
+      <static>true</static>
+      <pose>0 -22.5 1.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>45 0.2 3</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>45 0.2 3</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.5 0.5 0.5 1</ambient>
+            <diffuse>0.7 0.7 0.7 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- North wall (y = 22.5) -->
+    <model name="wall_north">
+      <static>true</static>
+      <pose>0 22.5 1.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>45 0.2 3</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>45 0.2 3</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.5 0.5 0.5 1</ambient>
+            <diffuse>0.7 0.7 0.7 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- West wall (x = -22.5) -->
+    <model name="wall_west">
+      <static>true</static>
+      <pose>-22.5 0 1.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.2 45 3</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.2 45 3</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.5 0.5 0.5 1</ambient>
+            <diffuse>0.7 0.7 0.7 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- East wall with main gate (4m) -->
+    <!-- Top wall piece -->
+    <model name="wall_east_top">
+      <static>true</static>
+      <pose>22.5 12.25 1.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.2 20.5 3</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.2 20.5 3</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.5 0.5 0.5 1</ambient>
+            <diffuse>0.7 0.7 0.7 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Main gate (4m wide, blocked by glass) -->
+    <model name="gate_main_glass">
+      <static>true</static>
+      <pose>22.5 0 1.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.05 4 3</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.05 4 3</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.7 0.9 1.0 0.3</ambient>
+            <diffuse>0.7 0.9 1.0 0.3</diffuse>
+            <specular>1 1 1 0.3</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Bottom wall piece -->
+    <model name="wall_east_bottom">
+      <static>true</static>
+      <pose>22.5 -12.25 1.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.2 20.5 3</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.2 20.5 3</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.5 0.5 0.5 1</ambient>
+            <diffuse>0.7 0.7 0.7 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Interior Walls (4 walls without gates) -->
+    <!-- Wall 1: Vertical wall separating 서고 and 열람실 (x = -7.5, y = 15) -->
+    <model name="wall_1">
+      <static>true</static>
+      <pose>-7.5 15 1.25 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.2 15 2.5</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.2 15 2.5</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.7 0.7 0.7 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.2 0.2 0.2 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Wall 2: Vertical wall separating 자료실 and 로비/아동도서실 (x = 0, only lower section) -->
+    <model name="wall_2">
+      <static>true</static>
+      <pose>0 -7.5 1.25 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.2 30 2.5</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.2 30 2.5</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.7 0.7 0.7 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.2 0.2 0.2 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Wall 3: Horizontal wall separating upper and lower sections (y = 7.5, full length) -->
+    <model name="wall_3">
+      <static>true</static>
+      <pose>0 7.5 1.25 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>45 0.2 2.5</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>45 0.2 2.5</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.7 0.7 0.7 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.2 0.2 0.2 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Wall 4: Horizontal wall separating 로비 and 아동도서실 (y = -7.5, right side only) -->
+    <model name="wall_4">
+      <static>true</static>
+      <pose>11.25 -7.5 1.25 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>22.5 0.2 2.5</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>22.5 0.2 2.5</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.7 0.7 0.7 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.2 0.2 0.2 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+
     <!-- Lighting -->
     <light name='library_light_1' type='point'>
       <pose>-15 15 8 0 0 0</pose>
@@ -106,9 +374,6 @@
       </attenuation>
       <cast_shadows>0</cast_shadows>
     </light>
-
-    <!-- Robot spawn position (로비 중앙) -->
-    <!-- bookrobot will be spawned separately via launch file -->
 
   </world>
 </sdf>
