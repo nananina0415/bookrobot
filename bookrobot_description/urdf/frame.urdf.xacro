@@ -1,0 +1,165 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <!--
+    Frame for Bookrobot - holds bookcubes
+    - 2 horizontal rail poles (left and right)
+    - 3 levels
+    - Cubes slide on rails via bottom channels
+    - Back plate for safety
+    -->
+
+    <xacro:macro name="insert_frame" params="parent prefix num_levels:=3">
+
+        <!-- Frame properties -->
+        <xacro:property name="frame_width" value="0.35"/>           <!-- Width (between rails) -->
+        <xacro:property name="frame_depth" value="0.35"/>           <!-- Depth (rail length) -->
+        <xacro:property name="frame_level_height" value="0.30"/>    <!-- Height between levels: 30cm -->
+        <xacro:property name="rail_radius" value="0.008"/>          <!-- Rail pole radius: 8mm -->
+        <xacro:property name="rail_spacing" value="0.32"/>          <!-- Distance between left and right rails -->
+        <xacro:property name="back_plate_thickness" value="0.01"/>  <!-- Back plate thickness -->
+        <xacro:property name="total_height" value="${frame_level_height * num_levels}"/>
+
+        <!-- Base plate (optional, for structure) -->
+        <link name="${prefix}frame_base">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <box size="${frame_width} ${frame_depth} 0.01"/>
+                </geometry>
+                <material name="frame_material">
+                    <color rgba="0.3 0.3 0.3 1.0"/>  <!-- Dark gray -->
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <box size="${frame_width} ${frame_depth} 0.01"/>
+                </geometry>
+            </collision>
+            <inertial>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <mass value="1.0"/>
+                <inertia ixx="0.01" ixy="0.0" ixz="0.0"
+                         iyy="0.01" iyz="0.0" izz="0.01"/>
+            </inertial>
+        </link>
+
+        <!-- Fixed joint to attach frame to robot -->
+        <joint name="${prefix}frame_base_joint" type="fixed">
+            <parent link="${parent}"/>
+            <child link="${prefix}frame_base"/>
+            <!-- Position frame above the robot base, rotated 90 degrees clockwise -->
+            <origin xyz="0.0 0.0 0.25" rpy="0 0 ${-pi/2}"/>
+        </joint>
+
+        <!-- Back plate for safety -->
+        <link name="${prefix}frame_back_plate">
+            <visual>
+                <origin xyz="0 0 ${total_height/2}" rpy="0 0 0"/>
+                <geometry>
+                    <box size="${frame_width} ${back_plate_thickness} ${total_height}"/>
+                </geometry>
+                <material name="frame_material">
+                    <color rgba="0.3 0.3 0.3 1.0"/>
+                </material>
+            </visual>
+            <collision>
+                <origin xyz="0 0 ${total_height/2}" rpy="0 0 0"/>
+                <geometry>
+                    <box size="${frame_width} ${back_plate_thickness} ${total_height}"/>
+                </geometry>
+            </collision>
+            <inertial>
+                <origin xyz="0 0 ${total_height/2}" rpy="0 0 0"/>
+                <mass value="0.5"/>
+                <inertia ixx="0.005" ixy="0.0" ixz="0.0"
+                         iyy="0.005" iyz="0.0" izz="0.001"/>
+            </inertial>
+        </link>
+        <joint name="${prefix}frame_back_plate_joint" type="fixed">
+            <parent link="${prefix}frame_base"/>
+            <child link="${prefix}frame_back_plate"/>
+            <origin xyz="0 ${-frame_depth/2 + back_plate_thickness/2} 0.005" rpy="0 0 0"/>
+        </joint>
+
+        <!-- Macro to create rail poles for each level -->
+        <xacro:macro name="rail_level" params="level_num">
+            <!-- Left rail pole -->
+            <link name="${prefix}frame_rail_left_${level_num}">
+                <visual>
+                    <origin xyz="0 0 0" rpy="0 ${pi/2} 0"/>
+                    <geometry>
+                        <cylinder radius="${rail_radius}" length="${frame_depth}"/>
+                    </geometry>
+                    <material name="rail_material">
+                        <color rgba="0.5 0.5 0.5 1.0"/>  <!-- Gray metal -->
+                    </material>
+                </visual>
+                <collision>
+                    <origin xyz="0 0 0" rpy="0 ${pi/2} 0"/>
+                    <geometry>
+                        <cylinder radius="${rail_radius}" length="${frame_depth}"/>
+                    </geometry>
+                </collision>
+                <inertial>
+                    <origin xyz="0 0 0" rpy="0 0 0"/>
+                    <mass value="0.1"/>
+                    <inertia ixx="0.0001" ixy="0.0" ixz="0.0"
+                             iyy="0.0001" iyz="0.0" izz="0.00001"/>
+                </inertial>
+            </link>
+            <joint name="${prefix}frame_rail_left_${level_num}_joint" type="fixed">
+                <parent link="${prefix}frame_base"/>
+                <child link="${prefix}frame_rail_left_${level_num}"/>
+                <origin xyz="${-rail_spacing/2} 0 ${frame_level_height * level_num}" rpy="0 0 0"/>
+            </joint>
+
+            <!-- Right rail pole -->
+            <link name="${prefix}frame_rail_right_${level_num}">
+                <visual>
+                    <origin xyz="0 0 0" rpy="0 ${pi/2} 0"/>
+                    <geometry>
+                        <cylinder radius="${rail_radius}" length="${frame_depth}"/>
+                    </geometry>
+                    <material name="rail_material">
+                        <color rgba="0.5 0.5 0.5 1.0"/>
+                    </material>
+                </visual>
+                <collision>
+                    <origin xyz="0 0 0" rpy="0 ${pi/2} 0"/>
+                    <geometry>
+                        <cylinder radius="${rail_radius}" length="${frame_depth}"/>
+                    </geometry>
+                </collision>
+                <inertial>
+                    <origin xyz="0 0 0" rpy="0 0 0"/>
+                    <mass value="0.1"/>
+                    <inertia ixx="0.0001" ixy="0.0" ixz="0.0"
+                             iyy="0.0001" iyz="0.0" izz="0.00001"/>
+                </inertial>
+            </link>
+            <joint name="${prefix}frame_rail_right_${level_num}_joint" type="fixed">
+                <parent link="${prefix}frame_base"/>
+                <child link="${prefix}frame_rail_right_${level_num}"/>
+                <origin xyz="${rail_spacing/2} 0 ${frame_level_height * level_num}" rpy="0 0 0"/>
+            </joint>
+        </xacro:macro>
+
+        <!-- Generate rails for each level -->
+        <!-- Level 1 -->
+        <xacro:rail_level level_num="1"/>
+
+        <!-- Level 2 -->
+        <xacro:if value="${num_levels >= 2}">
+            <xacro:rail_level level_num="2"/>
+        </xacro:if>
+
+        <!-- Level 3 -->
+        <xacro:if value="${num_levels >= 3}">
+            <xacro:rail_level level_num="3"/>
+        </xacro:if>
+
+    </xacro:macro>
+
+</robot>

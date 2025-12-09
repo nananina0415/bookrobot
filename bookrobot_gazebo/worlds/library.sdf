@@ -493,33 +493,11 @@
       <cast_shadows>0</cast_shadows>
     </light>
 
-    <!-- Bookcubes in library -->
-    <!-- Bookcube in 로비 (Lobby) area -->
+    <!-- Bookshelf with frame and cubes -->
     <include>
-      <uri>model://bookcube</uri>
-      <name>bookcube_1</name>
-      <pose>5 0 0 0 0 0</pose>
-    </include>
-
-    <!-- Bookcube in 자료실 area -->
-    <include>
-      <uri>model://bookcube</uri>
-      <name>bookcube_2</name>
-      <pose>-10 -10 0 0 0 0</pose>
-    </include>
-
-    <!-- Bookcube in 열람실 area -->
-    <include>
-      <uri>model://bookcube</uri>
-      <name>bookcube_3</name>
-      <pose>10 15 0 0 0 0</pose>
-    </include>
-
-    <!-- Bookcube in 아동도서실 area -->
-    <include>
-      <uri>model://bookcube</uri>
-      <name>bookcube_4</name>
-      <pose>10 -15 0 0 0 0</pose>
+      <uri>model://bookshelf</uri>
+      <name>bookshelf_1</name>
+      <pose>-5 5 0 0 0 0</pose>
     </include>
 
   </world>
