@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='utf-8'?>
+<sdf version="1.6">
+  <model name="lib_shelf">
+    <static>true</static>
+
+    <!-- Bookshelf Frame -->
+    <include>
+      <uri>model://bookshelf</uri>
+      <name>shelf_frame</name>
+      <pose>0 0 0 0 0 0</pose>
+    </include>
+
+    <!-- Bookcubes on bookshelf (6 levels, 3 books each, 0.3m Y spacing) -->
+    <!-- Level 1 - Y axis spread, Z=-0.96 -->
+    <include>
+      <uri>model://bookcube</uri>
+      <name>bookcube_L1_1</name>
+      <pose>0 -0.3 -0.96 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://bookcube</uri>
+      <name>bookcube_L1_2</name>
+      <pose>0 0 -0.96 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://bookcube</uri>
+      <name>bookcube_L1_3</name>
+      <pose>0 0.3 -0.96 0 0 0</pose>
+    </include>
+
+    <!-- Level 2 - Y axis spread, Z=-0.61 -->
+    <include>
+      <uri>model://bookcube</uri>
+      <name>bookcube_L2_1</name>
+      <pose>0 -0.3 -0.61 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://bookcube</uri>
+      <name>bookcube_L2_2</name>
+      <pose>0 0 -0.61 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://bookcube</uri>
+      <name>bookcube_L2_3</name>
+      <pose>0 0.3 -0.61 0 0 0</pose>
+    </include>
+
+    <!-- Level 3 - Y axis spread, Z=-0.26 -->
+    <include>
+      <uri>model://bookcube</uri>
+      <name>bookcube_L3_1</name>
+      <pose>0 -0.3 -0.26 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://bookcube</uri>
+      <name>bookcube_L3_2</name>
+      <pose>0 0 -0.26 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://bookcube</uri>
+      <name>bookcube_L3_3</name>
+      <pose>0 0.3 -0.26 0 0 0</pose>
+    </include>
+
+    <!-- Level 4 - Y axis spread, Z=0.09 -->
+    <include>
+      <uri>model://bookcube</uri>
+      <name>bookcube_L4_1</name>
+      <pose>0 -0.3 0.09 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://bookcube</uri>
+      <name>bookcube_L4_2</name>
+      <pose>0 0 0.09 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://bookcube</uri>
+      <name>bookcube_L4_3</name>
+      <pose>0 0.3 0.09 0 0 0</pose>
+    </include>
+
+    <!-- Level 5 - Y axis spread, Z=0.44 -->
+    <include>
+      <uri>model://bookcube</uri>
+      <name>bookcube_L5_1</name>
+      <pose>0 -0.3 0.44 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://bookcube</uri>
+      <name>bookcube_L5_2</name>
+      <pose>0 0 0.44 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://bookcube</uri>
+      <name>bookcube_L5_3</name>
+      <pose>0 0.3 0.44 0 0 0</pose>
+    </include>
+
+    <!-- Level 6 - Y axis spread, Z=0.79 -->
+    <include>
+      <uri>model://bookcube</uri>
+      <name>bookcube_L6_1</name>
+      <pose>0 -0.3 0.79 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://bookcube</uri>
+      <name>bookcube_L6_2</name>
+      <pose>0 0 0.79 0 0 0</pose>
+    </include>
+    <include>
+      <uri>model://bookcube</uri>
+      <name>bookcube_L6_3</name>
+      <pose>0 0.3 0.79 0 0 0</pose>
+    </include>
+
+  </model>
+</sdf>

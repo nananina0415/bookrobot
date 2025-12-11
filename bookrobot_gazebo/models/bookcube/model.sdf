@@ -1,48 +1,46 @@
-<?xml version="1.0"?>
+<?xml version='1.0' encoding='utf-8'?>
 <sdf version="1.6">
   <model name="bookcube">
-    <static>false</static>
-
-    <link name="base_link">
+    <static>true</static>
+    <link name="link">
       <pose>0 0 0 0 0 0</pose>
 
       <inertial>
-        <mass>3.0</mass>
+        <mass>1.0</mass>
         <inertia>
-          <ixx>0.025</ixx>
-          <iyy>0.025</iyy>
-          <izz>0.025</izz>
+          <ixx>0.166667</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.166667</iyy>
+          <iyz>0</iyz>
+          <izz>0.166667</izz>
         </inertia>
       </inertial>
 
-      <!-- STL Mesh Visual -->
-      <visual name="bookcube_visual">
-        <pose>0 0 0 0 0 0</pose>
+      <!-- Visual: Using user's STL mesh -->
+      <visual name="visual">
         <geometry>
           <mesh>
-            <uri>model://bookcube/bookcube.stl</uri>
-            <scale>1 1 1</scale>
+            <uri>package://bookrobot_description/meshes/collision/bookcube_new.stl</uri>
+            <scale>0.001 0.001 0.001</scale>
           </mesh>
         </geometry>
         <material>
-          <ambient>0.6 0.4 0.2 1.0</ambient>
-          <diffuse>0.6 0.4 0.2 1.0</diffuse>
+          <ambient>0.4 0.3 0.2 1.0</ambient>
+          <diffuse>0.4 0.3 0.2 1.0</diffuse>
           <specular>0.1 0.1 0.1 1.0</specular>
         </material>
       </visual>
 
-      <!-- STL Mesh Collision -->
-      <collision name="bookcube_collision">
-        <pose>0 0 0 0 0 0</pose>
+      <!-- Collision: Using user's STL mesh -->
+      <collision name="collision">
         <geometry>
           <mesh>
-            <uri>model://bookcube/bookcube.stl</uri>
-            <scale>1 1 1</scale>
+            <uri>package://bookrobot_description/meshes/collision/bookcube_new.stl</uri>
+            <scale>0.001 0.001 0.001</scale>
           </mesh>
         </geometry>
       </collision>
-
     </link>
-
   </model>
 </sdf>
