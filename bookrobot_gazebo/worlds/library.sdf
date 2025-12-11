@@ -493,5 +493,12 @@
       <cast_shadows>0</cast_shadows>
     </light>
 
+    <!-- Bookshelf with frame and cubes -->
+    <include>
+      <uri>model://bookshelf</uri>
+      <name>bookshelf_1</name>
+      <pose>-5 5 0 0 0 0</pose>
+    </include>
+
   </world>
 </sdf>

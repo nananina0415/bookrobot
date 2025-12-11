@@ -1,0 +1,41 @@
+# ROS2 build artifacts
+build/
+install/
+log/
+
+# Backup files
+*.backup
+*.backup[0-9]
+*.backup[0-9][0-9]
+*~
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+*.egg
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+.DS_Store
+
+# Compiled files
+*.o
+*.a
+*.so
+*.pyc
+
+# Gazebo
+.gazebo/
+
+# Temporary files
+*.tmp
+*.temp

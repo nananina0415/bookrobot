@@ -1,0 +1,285 @@
+<?xml version="1.0"?>
+<sdf version="1.6">
+  <model name="bookshelf">
+    <static>true</static>
+
+    <!-- Bookshelf Frame -->
+    <link name="frame">
+      <pose>0 0 0 0 0 0</pose>
+
+      <inertial>
+        <mass>50.0</mass>
+        <inertia>
+          <ixx>10.0</ixx>
+          <iyy>10.0</iyy>
+          <izz>2.0</izz>
+        </inertia>
+      </inertial>
+
+      <!-- Frame Visual (poles + back plate + base) -->
+      <visual name="frame_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://bookshelf/bookshelf_frame.stl</uri>
+            <scale>1 1 1</scale>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.4 0.3 0.2 1.0</ambient>
+          <diffuse>0.4 0.3 0.2 1.0</diffuse>
+          <specular>0.1 0.1 0.1 1.0</specular>
+        </material>
+      </visual>
+
+      <!-- Frame Collision -->
+      <collision name="frame_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://bookshelf/bookshelf_frame.stl</uri>
+            <scale>1 1 1</scale>
+          </mesh>
+        </geometry>
+      </collision>
+
+    </link>
+
+    <!-- Bookcubes on shelves -->
+    <!-- Level 0 (on base support, pole at z=0.025, hole at z=0.025) -->
+    <link name="cube_level_0">
+      <pose>0 0 0.01 0 0 0</pose>
+      <inertial>
+        <mass>3.0</mass>
+        <inertia>
+          <ixx>0.025</ixx>
+          <iyy>0.025</iyy>
+          <izz>0.025</izz>
+        </inertia>
+      </inertial>
+      <visual name="cube_0_visual">
+        <geometry>
+          <mesh>
+            <uri>model://bookcube/bookcube.stl</uri>
+            <scale>1 1 1</scale>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.6 0.4 0.2 1.0</ambient>
+          <diffuse>0.6 0.4 0.2 1.0</diffuse>
+          <specular>0.1 0.1 0.1 1.0</specular>
+        </material>
+      </visual>
+      <collision name="cube_0_collision">
+        <geometry>
+          <mesh>
+            <uri>model://bookcube/bookcube.stl</uri>
+            <scale>1 1 1</scale>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- Level 1 (35cm spacing, pole at z=0.375, hole at z=0.375) -->
+    <link name="cube_level_1">
+      <pose>0 0 0.36 0 0 0</pose>
+      <inertial>
+        <mass>3.0</mass>
+        <inertia>
+          <ixx>0.025</ixx>
+          <iyy>0.025</iyy>
+          <izz>0.025</izz>
+        </inertia>
+      </inertial>
+      <visual name="cube_1_visual">
+        <geometry>
+          <mesh>
+            <uri>model://bookcube/bookcube.stl</uri>
+            <scale>1 1 1</scale>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.6 0.4 0.2 1.0</ambient>
+          <diffuse>0.6 0.4 0.2 1.0</diffuse>
+          <specular>0.1 0.1 0.1 1.0</specular>
+        </material>
+      </visual>
+      <collision name="cube_1_collision">
+        <geometry>
+          <mesh>
+            <uri>model://bookcube/bookcube.stl</uri>
+            <scale>1 1 1</scale>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- Level 2 (35cm spacing, pole at z=0.725, hole at z=0.725) -->
+    <link name="cube_level_2">
+      <pose>0 0 0.71 0 0 0</pose>
+      <inertial>
+        <mass>3.0</mass>
+        <inertia>
+          <ixx>0.025</ixx>
+          <iyy>0.025</iyy>
+          <izz>0.025</izz>
+        </inertia>
+      </inertial>
+      <visual name="cube_2_visual">
+        <geometry>
+          <mesh>
+            <uri>model://bookcube/bookcube.stl</uri>
+            <scale>1 1 1</scale>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.6 0.4 0.2 1.0</ambient>
+          <diffuse>0.6 0.4 0.2 1.0</diffuse>
+          <specular>0.1 0.1 0.1 1.0</specular>
+        </material>
+      </visual>
+      <collision name="cube_2_collision">
+        <geometry>
+          <mesh>
+            <uri>model://bookcube/bookcube.stl</uri>
+            <scale>1 1 1</scale>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- Level 3 (35cm spacing, pole at z=1.075, hole at z=1.075) -->
+    <link name="cube_level_3">
+      <pose>0 0 1.06 0 0 0</pose>
+      <inertial>
+        <mass>3.0</mass>
+        <inertia>
+          <ixx>0.025</ixx>
+          <iyy>0.025</iyy>
+          <izz>0.025</izz>
+        </inertia>
+      </inertial>
+      <visual name="cube_3_visual">
+        <geometry>
+          <mesh>
+            <uri>model://bookcube/bookcube.stl</uri>
+            <scale>1 1 1</scale>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.6 0.4 0.2 1.0</ambient>
+          <diffuse>0.6 0.4 0.2 1.0</diffuse>
+          <specular>0.1 0.1 0.1 1.0</specular>
+        </material>
+      </visual>
+      <collision name="cube_3_collision">
+        <geometry>
+          <mesh>
+            <uri>model://bookcube/bookcube.stl</uri>
+            <scale>1 1 1</scale>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- Level 4 (35cm spacing, pole at z=1.425, hole at z=1.425) -->
+    <link name="cube_level_4">
+      <pose>0 0 1.41 0 0 0</pose>
+      <inertial>
+        <mass>3.0</mass>
+        <inertia>
+          <ixx>0.025</ixx>
+          <iyy>0.025</iyy>
+          <izz>0.025</izz>
+        </inertia>
+      </inertial>
+      <visual name="cube_4_visual">
+        <geometry>
+          <mesh>
+            <uri>model://bookcube/bookcube.stl</uri>
+            <scale>1 1 1</scale>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.6 0.4 0.2 1.0</ambient>
+          <diffuse>0.6 0.4 0.2 1.0</diffuse>
+          <specular>0.1 0.1 0.1 1.0</specular>
+        </material>
+      </visual>
+      <collision name="cube_4_collision">
+        <geometry>
+          <mesh>
+            <uri>model://bookcube/bookcube.stl</uri>
+            <scale>1 1 1</scale>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- Level 5 (35cm spacing, pole at z=1.775, hole at z=1.775) -->
+    <link name="cube_level_5">
+      <pose>0 0 1.76 0 0 0</pose>
+      <inertial>
+        <mass>3.0</mass>
+        <inertia>
+          <ixx>0.025</ixx>
+          <iyy>0.025</iyy>
+          <izz>0.025</izz>
+        </inertia>
+      </inertial>
+      <visual name="cube_5_visual">
+        <geometry>
+          <mesh>
+            <uri>model://bookcube/bookcube.stl</uri>
+            <scale>1 1 1</scale>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.6 0.4 0.2 1.0</ambient>
+          <diffuse>0.6 0.4 0.2 1.0</diffuse>
+          <specular>0.1 0.1 0.1 1.0</specular>
+        </material>
+      </visual>
+      <collision name="cube_5_collision">
+        <geometry>
+          <mesh>
+            <uri>model://bookcube/bookcube.stl</uri>
+            <scale>1 1 1</scale>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- Fixed joints to attach cubes to frame -->
+    <joint name="frame_to_cube_0" type="fixed">
+      <parent>frame</parent>
+      <child>cube_level_0</child>
+    </joint>
+
+    <joint name="frame_to_cube_1" type="fixed">
+      <parent>frame</parent>
+      <child>cube_level_1</child>
+    </joint>
+
+    <joint name="frame_to_cube_2" type="fixed">
+      <parent>frame</parent>
+      <child>cube_level_2</child>
+    </joint>
+
+    <joint name="frame_to_cube_3" type="fixed">
+      <parent>frame</parent>
+      <child>cube_level_3</child>
+    </joint>
+
+    <joint name="frame_to_cube_4" type="fixed">
+      <parent>frame</parent>
+      <child>cube_level_4</child>
+    </joint>
+
+    <joint name="frame_to_cube_5" type="fixed">
+      <parent>frame</parent>
+      <child>cube_level_5</child>
+    </joint>
+
+  </model>
+</sdf>
