@@ -1,4 +1,4 @@
-# ROS2 build artifacts
+# ROS2 Build artifacts
 build/
 install/
 log/
@@ -25,12 +25,14 @@ dist/
 *.swp
 *.swo
 *.swn
+
+# OS
 .DS_Store
+Thumbs.db
 
 # Compiled files
 *.o
 *.a
-*.so
 *.pyc
 
 # Gazebo
@@ -39,3 +41,20 @@ dist/
 # Temporary files
 *.tmp
 *.temp
+*.bak
+*.old
+*.orig
+
+# Model files (development artifacts)
+*.stl
+*.obj
+*.mtl
+*.dae.bak
+
+# Image files (non-essential)
+*.webp
+
+# Test/debug files
+a.py
+test_*.py
+debug_*.py
