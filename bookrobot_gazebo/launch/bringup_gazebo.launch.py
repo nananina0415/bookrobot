@@ -21,11 +21,13 @@ def generate_launch_description():
 
     model_path = get_package_share_directory('bookrobot_gazebo')
 
-    # Add map/models directory to resource path for TurtleBot3 and other models
+    # Add map/models directory to resource path
+    # Navigate from install directory back to workspace root
     workspace_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(model_path))))
-    map_models_path = os.path.join(workspace_root, 'src', 'bookrobot', 'map', 'models')
+    map_models_path = os.path.join(workspace_root, 'map', 'models')
+    aws_models_path = os.path.join(os.path.expanduser('~'), 'aws-robomaker-bookstore-world', 'models')
 
-    environ['IGN_GAZEBO_RESOURCE_PATH'] = resource_path + pathsep + model_path + "/models" + pathsep + map_models_path
+    environ['IGN_GAZEBO_RESOURCE_PATH'] = resource_path + pathsep + model_path + "/models" + pathsep + map_models_path + pathsep + aws_models_path
 
     gz_sim = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([
